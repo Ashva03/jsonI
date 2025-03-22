@@ -49,12 +49,12 @@ const JsonComparison: React.FC<JsonComparisonProps> = ({
     }
 
     // Get all keys from both objects
-    const allKeys = new Set([
+    const allKeys: any = new Set([
       ...Object.keys(obj1),
       ...Object.keys(obj2),
     ]);
 
-    for (const key of allKeys) {
+    for (const key of allKeys ) {
       const currentPath = path ? `${path}.${key}` : key;
       
       if (!(key in obj1)) {
