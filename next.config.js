@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    distDir: 'public',
   output: 'export',
   eslint: {
     ignoreDuringBuilds: true,
