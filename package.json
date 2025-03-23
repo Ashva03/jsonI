@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "format": "prettier --write .",
+    "format-check": "prettier --check .",
+    "check-lint": "eslint . --ext ts --ext tsx --ext js",
+    "lint:js": "eslint --max-warnings 0 app --ext .js,.jsx,.ts,.tsx",
+    "lint": "npm run lint:js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
