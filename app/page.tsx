@@ -99,12 +99,12 @@ export default function Home() {
   };
 
   return (
-    <div className='container mx-auto p-6 min-h-screen'>
-      <h1 className='text-4xl font-bold mb-8 text-center'>
+    <div className='container mx-auto p-6 min-h-screen bg-yellow-100'>
+      <h1 className='text-4xl font-bold mb-8 text-center bg-yellow-500 text-white'>
         JSON Viewer & Analysis Tool
       </h1>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-8'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 bg-yellow-200'>
         <Card>
           <CardContent className='p-6'>
             <h2 className='text-2xl font-semibold mb-4'>Input Methods</h2>
@@ -161,8 +161,8 @@ export default function Home() {
         </Card>
       </div>
 
-      <Tabs defaultValue='tree' className='w-full'>
-        <TabsList className='grid w-full grid-cols-3 lg:w-[400px]'>
+      <Tabs defaultValue='tree' className='w-full bg-blue-300'>
+        <TabsList className='grid w-full grid-cols-3 lg:w-[400px] bg-blue-500'>
           <TabsTrigger value='tree'>Tree View</TabsTrigger>
           <TabsTrigger value='code'>Code View</TabsTrigger>
           <TabsTrigger value='table'>Table View</TabsTrigger>
@@ -199,7 +199,7 @@ export default function Home() {
         </TabsContent>
       </Tabs>
 
-      <Card className='mt-8'>
+      <Card className='mt-8 bg-yellow-200'>
         <CardContent className='p-6'>
           <h2 className='text-2xl font-semibold mb-4'>JSON Comparison</h2>
           <JsonComparison
@@ -210,7 +210,7 @@ export default function Home() {
         </CardContent>
       </Card>
 
-      <Card className='mt-8'>
+      <Card className='mt-8 bg-yellow-300'>
         <CardContent className='p-6'>
           <div className='flex items-center gap-2 mb-4'>
             <History className='h-6 w-6' />
