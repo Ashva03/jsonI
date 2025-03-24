@@ -22,13 +22,8 @@ const JsonCodeView: React.FC<JsonCodeViewProps> = ({ data }) => {
 
   return (
     <div className='relative'>
-      <Button
-        variant='outline'
-        size='sm'
-        className='absolute right-4 top-4'
-        onClick={handleCopy}
-      >
-        <Copy className='h-4 w-4 mr-2' />
+      <Button size='sm' className='flex gap-[8px]' onClick={handleCopy}>
+        <Copy className='h-4 w-4' />
         Copy
       </Button>
       <pre className='bg-muted p-4 rounded-lg overflow-x-auto'>

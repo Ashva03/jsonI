@@ -99,14 +99,13 @@ export default function Home() {
   };
 
   return (
-    <div className='container mx-auto p-6 min-h-screen bg-yellow-100'>
-      <h1 className='text-4xl font-bold mb-8 text-center bg-yellow-500 text-white'>
+    <div className='container mx-auto p-6 min-h-screen'>
+      <h1 className='text-4xl font-bold mb-8 text-center text-black'>
         JSON Viewer & Analysis Tool
       </h1>
-
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 bg-yellow-200'>
+      <div className='grid grid-cols-1 md:grid-cols-2 mb-8 bg-gray-200 rounded-[20px]'>
         <Card>
-          <CardContent className='p-6'>
+          <CardContent className='p-6 border-r border-[#cecdcd]'>
             <h2 className='text-2xl font-semibold mb-4'>Input Methods</h2>
             <div className='space-y-4'>
               <div className='flex gap-4'>
@@ -121,23 +120,25 @@ export default function Home() {
                   onClick={() =>
                     document.getElementById('json-upload')?.click()
                   }
-                  className='w-full'
+                  className='flex items-center gap-[8px] bg-black text-white px-[12px] py-[8px] rounded-[8px]'
                 >
-                  <Upload className='mr-2 h-4 w-4' />
+                  <Upload className='h-5 w-5' />
                   Upload JSON File
                 </Button>
               </div>
 
-              <div className='flex gap-4'>
+              <div className='flex gap-[8px]'>
                 <Input
                   placeholder='Enter JSON URL'
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
+                  className='px-[12px] py-[8px] border border-[#cecdcd] rounded-[4px]'
                 />
                 <Button
                   onClick={fetchJsonFromUrl}
                   disabled={isLoading}
                   variant='secondary'
+                  className='flex'
                 >
                   <Link className='mr-2 h-4 w-4' />
                   Fetch
@@ -146,7 +147,7 @@ export default function Home() {
 
               <Textarea
                 placeholder='Paste JSON here...'
-                className='min-h-[200px]'
+                className='min-h-[200px] px-[12px] py-[8px] border border-[#cecdcd] rounded-[4px] resize-none'
                 onChange={(e) => handleJsonInput(e.target.value)}
               />
             </div>
@@ -161,11 +162,17 @@ export default function Home() {
         </Card>
       </div>
 
-      <Tabs defaultValue='tree' className='w-full bg-blue-300'>
-        <TabsList className='grid w-full grid-cols-3 lg:w-[400px] bg-blue-500'>
-          <TabsTrigger value='tree'>Tree View</TabsTrigger>
-          <TabsTrigger value='code'>Code View</TabsTrigger>
-          <TabsTrigger value='table'>Table View</TabsTrigger>
+      <Tabs defaultValue='tree' className='w-full bg-gray-300 rounded-[20px]'>
+        <TabsList className='grid w-full grid-cols-3 lg:w-[400px] bg-gray-500'>
+          <TabsTrigger value='tree' className='p-[8px]'>
+            Tree View
+          </TabsTrigger>
+          <TabsTrigger value='code' className='p-[8px]'>
+            Code View
+          </TabsTrigger>
+          <TabsTrigger value='table' className='p-[8px]'>
+            Table View
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value='tree'>
@@ -199,7 +206,7 @@ export default function Home() {
         </TabsContent>
       </Tabs>
 
-      <Card className='mt-8 bg-yellow-200'>
+      <Card className='mt-8 bg-gray-200 rounded-[20px]'>
         <CardContent className='p-6'>
           <h2 className='text-2xl font-semibold mb-4'>JSON Comparison</h2>
           <JsonComparison
@@ -210,7 +217,7 @@ export default function Home() {
         </CardContent>
       </Card>
 
-      <Card className='mt-8 bg-yellow-300'>
+      <Card className='mt-8 bg-gray-300 rounded-[20px]'>
         <CardContent className='p-6'>
           <div className='flex items-center gap-2 mb-4'>
             <History className='h-6 w-6' />

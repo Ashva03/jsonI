@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Textarea } from '@/global/components/ui/textarea';
-import { Button } from '@/global/components/ui/button';
 import { ScrollArea } from '@/global/components/ui/scroll-area';
 import { Badge } from '@/global/components/ui/badge';
 import { Plus, Minus, Edit } from 'lucide-react';
@@ -96,7 +95,7 @@ const JsonComparison: React.FC<JsonComparisonProps> = ({
         </label>
         <Textarea
           placeholder='Paste JSON here for comparison...'
-          className='min-h-[100px]'
+          className='min-h-[100px] px-[12px] py-[8px] border border-[#cecdcd] rounded-[4px] resize-none'
           onChange={(e) => handleComparisonInput(e.target.value)}
         />
       </div>
