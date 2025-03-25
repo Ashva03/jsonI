@@ -196,15 +196,9 @@ export default function Home() {
           className='w-full bg-gray-300 rounded-[20px] overflow-hidden'
         >
           <TabsList className='grid w-full grid-cols-3 lg:w-[400px] bg-gray-500'>
-            <TabsTrigger value='tree' className='p-[8px]'>
-              Tree View
-            </TabsTrigger>
-            <TabsTrigger value='code' className='p-[8px]'>
-              Code View
-            </TabsTrigger>
-            <TabsTrigger value='table' className='p-[8px]'>
-              Table View
-            </TabsTrigger>
+            <TabsTrigger value='tree'>Tree View</TabsTrigger>
+            <TabsTrigger value='code'>Code View</TabsTrigger>
+            <TabsTrigger value='table'>Table View</TabsTrigger>
           </TabsList>
 
           <TabsContent value='tree'>
