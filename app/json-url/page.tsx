@@ -8,10 +8,10 @@ import {
 } from '@/global/components/ui/tabs';
 import { Card, CardContent } from '@/global/components/ui/card';
 import { Button } from '@/global/components/ui/button';
-import { Textarea } from '@/global/components/ui/textarea';
+import { Input } from '@/global/components/ui/input';
 import { ScrollArea } from '@/global/components/ui/scroll-area';
 import { useToast } from '@/hooks/use-toast';
-import { FileJson, History } from 'lucide-react';
+import { Link, FileJson, History } from 'lucide-react';
 import JsonTreeView from '@/global/components/json-tree-view';
 import JsonCodeView from '@/global/components/json-code-view';
 import JsonTableView from '@/global/components/json-table-view';
@@ -39,26 +39,34 @@ const NavbarItem: React.FC<NavItemProps> = ({ name, href }) => (
   </a>
 );
 
-export default function Home() {
+export default function JSONUrl() {
   const [jsonData, setJsonData] = useState<any>(null);
+  const [urlInput, setUrlInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const { history, addToHistory } = useLocalStorage();
 
-  const handleJsonInput = (input: string) => {
+  const fetchJsonFromUrl = async () => {
+    if (!urlInput) return;
+    setIsLoading(true);
+
     try {
-      const parsed = JSON.parse(input);
-      setJsonData(parsed);
-      addToHistory(parsed);
+      const response = await fetch(urlInput);
+      const data = await response.json();
+      setJsonData(data);
+      addToHistory(data);
       toast({
-        title: 'JSON Parsed Successfully',
-        description: 'Your JSON data has been parsed and loaded.',
+        title: 'URL Fetched Successfully',
+        description: 'JSON data has been retrieved and loaded.',
       });
     } catch (error) {
       toast({
-        title: 'Invalid JSON',
-        description: 'Please check your JSON format and try again.',
+        title: 'Error Fetching URL',
+        description: 'Failed to fetch JSON from the provided URL.',
         variant: 'destructive',
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -80,11 +88,23 @@ export default function Home() {
             <CardContent className='p-6 border-r border-[#cecdcd] h-[100%]'>
               <h2 className='text-2xl font-semibold mb-4'>Input Methods</h2>
               <div className='space-y-4'>
-                <Textarea
-                  placeholder='Paste JSON here...'
-                  className='min-h-[200px] px-[12px] py-[8px] border border-[#cecdcd] rounded-[4px] resize-none'
-                  onChange={(e) => handleJsonInput(e.target.value)}
-                />
+                <div className='flex gap-[8px]'>
+                  <Input
+                    placeholder='Enter JSON URL'
+                    value={urlInput}
+                    onChange={(e) => setUrlInput(e.target.value)}
+                    className='px-[12px] py-[8px] border border-[#cecdcd] rounded-[4px]'
+                  />
+                  <Button
+                    onClick={fetchJsonFromUrl}
+                    disabled={isLoading}
+                    variant='secondary'
+                    className='flex'
+                  >
+                    <Link className='mr-2 h-4 w-4' />
+                    Fetch
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
