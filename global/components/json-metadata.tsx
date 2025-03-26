@@ -75,17 +75,17 @@ const JsonMetadata: React.FC<JsonMetadataProps> = ({ data }) => {
     <div className='grid gap-4'>
       <div className='grid grid-cols-2 gap-4'>
         <Card>
-          <CardHeader className='pb-2'>
+          <CardHeader className='pb-2 flex items-center gap-[8px]'>
             <CardTitle>Structure</CardTitle>
             <CardDescription>Basic structure information</CardDescription>
           </CardHeader>
           <CardContent>
             <div className='space-y-2'>
-              <div className='flex justify-between'>
+              <div className='flex items-center justify-between my-[2px]'>
                 <span>Total Properties:</span>
                 <Badge>{metadata.totalProperties}</Badge>
               </div>
-              <div className='flex justify-between'>
+              <div className='flex items-center justify-between my-[2px]'>
                 <span>Maximum Depth:</span>
                 <Badge>{metadata.maxDepth}</Badge>
               </div>
@@ -94,33 +94,33 @@ const JsonMetadata: React.FC<JsonMetadataProps> = ({ data }) => {
         </Card>
 
         <Card>
-          <CardHeader className='pb-2'>
+          <CardHeader className='pb-2 flex items-center gap-[8px]'>
             <CardTitle>Types</CardTitle>
             <CardDescription>Count of value types</CardDescription>
           </CardHeader>
           <CardContent>
             <div className='space-y-2'>
-              <div className='flex justify-between'>
+              <div className='flex items-center justify-between my-[2px]'>
                 <span>Arrays:</span>
                 <Badge variant='secondary'>{metadata.arrayCount}</Badge>
               </div>
-              <div className='flex justify-between'>
+              <div className='flex items-center justify-between my-[2px]'>
                 <span>Objects:</span>
                 <Badge variant='secondary'>{metadata.objectCount}</Badge>
               </div>
-              <div className='flex justify-between'>
+              <div className='flex items-center justify-between my-[2px]'>
                 <span>Strings:</span>
                 <Badge variant='secondary'>{metadata.stringCount}</Badge>
               </div>
-              <div className='flex justify-between'>
+              <div className='flex items-center justify-between my-[2px]'>
                 <span>Numbers:</span>
                 <Badge variant='secondary'>{metadata.numberCount}</Badge>
               </div>
-              <div className='flex justify-between'>
+              <div className='flex items-center justify-between my-[2px]'>
                 <span>Booleans:</span>
                 <Badge variant='secondary'>{metadata.booleanCount}</Badge>
               </div>
-              <div className='flex justify-between'>
+              <div className='flex items-center justify-between my-[2px]'>
                 <span>Null Values:</span>
                 <Badge variant='secondary'>{metadata.nullCount}</Badge>
               </div>
