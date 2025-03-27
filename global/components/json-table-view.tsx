@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/global/components/ui/table';
+import clsx from 'clsx';
 
 interface JsonTableViewProps {
   data: any;
@@ -43,34 +44,55 @@ const JsonTableView: React.FC<JsonTableViewProps> = ({ data }) => {
   }
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead className='w-[300px]'>Path</TableHead>
-          <TableHead>Type</TableHead>
-          <TableHead>Value</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {entries.map(([path, value], index) => (
-          <TableRow key={index}>
-            <TableCell className='font-medium'>{path}</TableCell>
-            <TableCell>
-              {Array.isArray(value) ? 'array' : typeof value}
-            </TableCell>
-            <TableCell>
-              {value === null
-                ? 'null'
-                : Array.isArray(value)
-                ? `[${value.join(', ')}]`
-                : typeof value === 'object'
-                ? JSON.stringify(value)
-                : String(value)}
-            </TableCell>
+    <div className='overflow-auto shadow-md rounded-lg'>
+      <Table className='border border-gray-200 rounded-lg'>
+        <TableHeader>
+          <TableRow className='bg-gray-100 text-gray-700'>
+            <TableHead className='w-[300px] p-3'>Path</TableHead>
+            <TableHead className='p-3'>Type</TableHead>
+            <TableHead className='p-3'>Value</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {entries.map(([path, value], index) => (
+            <TableRow
+              key={index}
+              className={clsx(
+                'transition-all duration-200 hover:bg-gray-100',
+                index % 2 === 0 ? 'bg-white' : 'bg-gray-50',
+              )}
+            >
+              <TableCell className='font-medium p-3'>{path}</TableCell>
+              <TableCell
+                className={clsx(
+                  'font-semibold',
+                  Array.isArray(value)
+                    ? 'text-blue-600'
+                    : typeof value === 'number'
+                    ? 'text-green-600'
+                    : typeof value === 'boolean'
+                    ? 'text-purple-600'
+                    : typeof value === 'string'
+                    ? 'text-orange-600'
+                    : 'text-gray-600',
+                )}
+              >
+                {Array.isArray(value) ? 'array' : typeof value}
+              </TableCell>
+              <TableCell className='p-3 truncate max-w-[400px]'>
+                {value === null
+                  ? 'null'
+                  : Array.isArray(value)
+                  ? `[${value.join(', ')}]`
+                  : typeof value === 'object'
+                  ? JSON.stringify(value, null, 2)
+                  : String(value)}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 
