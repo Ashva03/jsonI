@@ -33,6 +33,20 @@ export default function JSONComparisonPage() {
   const [jsonData, setJsonData] = useState<any>(null);
   const [comparisonData, setComparisonData] = useState<any>(null);
   const { history } = useLocalStorage();
+  const [error, setError] = useState<string | null>(null);
+
+  const handleJsonChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    setter: (data: any) => void,
+  ) => {
+    try {
+      const parsedData = JSON.parse(e.target.value);
+      setter(parsedData);
+      setError(null);
+    } catch (err) {
+      setError('Invalid JSON format');
+    }
+  };
 
   return (
     <div className='bg-gray-100 text-gray-800'>
@@ -53,20 +67,34 @@ export default function JSONComparisonPage() {
             <h2 className='text-2xl font-semibold mb-4'>JSON Comparison</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
               <textarea
-                className='border p-3 w-full h-56 rounded-md resize-none shadow-sm'
+                className='h-80 p-3 bg-white text-gray-700 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500'
                 placeholder='Paste JSON here...'
-                onChange={(e) => setJsonData(JSON.parse(e.target.value))}
+                onChange={(e) => handleJsonChange(e, setJsonData)}
               />
               <textarea
-                className='border p-3 w-full h-56 rounded-md resize-none shadow-sm'
+                className='h-80 p-3 bg-white text-gray-700 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500'
                 placeholder='Paste JSON to compare...'
-                onChange={(e) => setComparisonData(JSON.parse(e.target.value))}
+                onChange={(e) => handleJsonChange(e, setComparisonData)}
               />
+            </div>
+            {error && <p className='text-red-500 mt-2'>{error}</p>}
+            <div className='flex justify-end mt-4 gap-3'>
+              <Button
+                onClick={() => {
+                  setJsonData(null);
+                  setComparisonData(null); // Reset comparisonData as well
+                }}
+              >
+                Clear
+              </Button>
+              <Button onClick={() => setComparisonData(jsonData)}>
+                Compare
+              </Button>
             </div>
             <JsonComparison
               originalData={jsonData}
               comparisonData={comparisonData}
-              setComparisonData={setComparisonData}
+              setComparisonData={setComparisonData} // Ensure this function is passed correctly
             />
           </CardContent>
         </Card>

@@ -20,9 +20,9 @@ const JsonComparison: React.FC<JsonComparisonProps> = ({
   const handleComparisonInput = (input: string) => {
     try {
       const parsed = JSON.parse(input);
-      setComparisonData(parsed);
+      setComparisonData(parsed); // Ensure this updates the state
     } catch (error) {
-      // Invalid JSON input is handled silently
+      console.error('Invalid JSON input:', error);
     }
   };
 
