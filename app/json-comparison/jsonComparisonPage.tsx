@@ -46,10 +46,23 @@ export default function JSONComparisonPage() {
           </div>
         </div>
       </header>
-      <div className='container mx-auto p-6 h-[100%]'>
-        <Card className='bg-gray-200 rounded-[20px]'>
-          <CardContent className='p-6'>
+      <div className='container mx-auto p-6'>
+        {/* JSON Comparison Section */}
+        <Card className='bg-white rounded-xl shadow-lg p-6'>
+          <CardContent>
             <h2 className='text-2xl font-semibold mb-4'>JSON Comparison</h2>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+              <textarea
+                className='border p-3 w-full h-56 rounded-md resize-none shadow-sm'
+                placeholder='Paste JSON here...'
+                onChange={(e) => setJsonData(JSON.parse(e.target.value))}
+              />
+              <textarea
+                className='border p-3 w-full h-56 rounded-md resize-none shadow-sm'
+                placeholder='Paste JSON to compare...'
+                onChange={(e) => setComparisonData(JSON.parse(e.target.value))}
+              />
+            </div>
             <JsonComparison
               originalData={jsonData}
               comparisonData={comparisonData}
